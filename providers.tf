@@ -15,4 +15,3 @@ provider "aws" {
   secret_key = "my-secret-key"
 }
 
-}
