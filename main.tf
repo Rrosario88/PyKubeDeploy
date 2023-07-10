@@ -1,5 +1,5 @@
 resource "aws_instance" "pkd_ec2" {
-  ami           = "ami-06ae0e97bcb59038c"
+  ami           = "ami-09cd431658b5ab3be"
   instance_type = "t2.micro"
   subnet_id     = "subnet-0ed2ed10a337623af"
 
