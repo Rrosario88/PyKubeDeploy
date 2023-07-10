@@ -1,3 +1,4 @@
+
   name: Deploy Flask Application
   hosts: your-ec2-instance
   become: true
@@ -12,7 +13,8 @@
         dest: "/app/Dockerfile"
 
     - name: Build the Docker image
-      command: docker build -t "pykubedeploy" "/app/Dockerfile"
+      command: docker build -t "pykubedeploy" "/app"
 
     - name: Run the Docker container
       command: docker run -d -p 5000:5000 --name pykubedeploy "pykubedeploy"
+
