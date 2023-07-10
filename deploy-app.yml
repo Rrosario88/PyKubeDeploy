@@ -1,6 +1,6 @@
 
-  name: Deploy Flask Application
-  hosts: your-ec2-instance
+- name: Deploy Flask Application
+  hosts: PyKubeDeploy
   become: true
   vars:
     app_directory: /app
