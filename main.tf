@@ -1,5 +1,5 @@
 resource "aws_instance" "pkd_ec2" {
-   ami           = "ami-0c94855ba95c574c8"
+   ami           = "ami-00abfd8da690f984d"
   instance_type = "t2.micro"
   
   user_data = <<-EOF
