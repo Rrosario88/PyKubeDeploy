@@ -8,7 +8,7 @@ WORKDIR /app
 ADD . /app
 
 # Install any necessary dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt --verbose
 
 # Make port 5000 available to the outside world
 EXPOSE 5000
