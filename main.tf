@@ -1,7 +1,7 @@
 resource "aws_instance" "pkd_ec2" {
   ami           = "ami-00abfd8da690f984d"
   instance_type = "t2.micro"
-  vpc_id        = "vpc-0745da24b1c8cae53" 
+  subnet_id     = "subnet-0ed2ed10a337623af"
 
   user_data = <<-EOF
               #!/bin/bash
