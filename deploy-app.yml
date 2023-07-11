@@ -7,6 +7,13 @@
     docker_image_name: pykubedeploy
 
   tasks:
+
+    - name: Ensure app directory exists
+      file:
+        path: /app
+        state: directory
+        mode: '0755'
+        
     - name: Copy Dockerfile to the EC2 instance
       copy:
         src: Dockerfile
