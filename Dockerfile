@@ -8,11 +8,7 @@ WORKDIR /app
 ADD . /app
 
 # Install any necessary dependencies
-<<<<<<< HEAD
 RUN pip3 install --upgrade pip && pip3 install --no-cache-dir -r requirements.txt --verbose
-=======
-RUN pip install --no-cache-dir -r requirements.txt
->>>>>>> parent of 74eafdd (update)
 
 # Make port 5000 available to the outside world
 EXPOSE 5000
