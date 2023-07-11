@@ -7,11 +7,18 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
-# Install any necessary dependencies
-RUN  pip3 install --no-cache-dir -r requirements.txt --verbose
+# Explicitly copy the requirements.txt file
+COPY requirements.txt .
 
-# Make port 5000 available to the outside world
+# Set the environment variable to reduce pip parallelism
+ENV PIP_NO_PARALLEL_BUILD=1
+
+# Install any necessary dependencies
+RUN pip3 install --no-cache-dir -r requirements.txt --verbose --no-use-pep517
+
+# Make port 5000 & port 80 available to the outside world
 EXPOSE 5000
+EXPOSE 80
 
 # Run app.py when the container launches
 CMD ["python", "app.py"]
