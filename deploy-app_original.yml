@@ -1,0 +1,21 @@
+
+- name: Deploy Flask Application
+  hosts: PyKubeDeploy
+  become: true
+  vars:
+    app_directory: /app
+    docker_image_name: pykubedeploy
+
+  tasks:
+
+    - name: Copy Dockerfile to the EC2 instance
+      copy:
+        src: Dockerfile
+        dest: /app/Dockerfile
+
+    - name: Build the Docker image
+      command: docker build -t pykubedeploy /app
+
+    - name: Run the Docker container
+      command: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
+

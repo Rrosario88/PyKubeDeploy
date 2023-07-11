@@ -1,4 +1,3 @@
-
 - name: Deploy Flask Application
   hosts: PyKubeDeploy
   become: true
@@ -8,20 +7,25 @@
 
   tasks:
 
-    - name: Ensure app directory exists
-      file:
-        path: /app
-        state: directory
-        mode: '0755'
-        
-    - name: Copy Dockerfile to the EC2 instance
-      copy:
-        src: Dockerfile
-        dest: /app/Dockerfile
+    - name: Archive the application files
+      ansible.builtin.archive:
+        path: /
+        dest: /archive.tar.gz
+        format: gz
+
+    - name: Copy the archive to the EC2 instance
+      ansible.builtin.copy:
+        src: /app/archive.tar.gz
+        dest: /app/archive.tar.gz
+
+    - name: Extract the archive on the EC2 instance
+      ansible.builtin.unarchive:
+        src: "{{ app_directory }}/archive.tar.gz"
+        dest: "{{ app_directory }}"
+        remote_src: yes
 
     - name: Build the Docker image
       command: docker build -t pykubedeploy /app
 
     - name: Run the Docker container
       command: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
-
