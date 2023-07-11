@@ -1,1 +1,2 @@
 .terraform/
+ssh -i "PyKubeDeployKey.pem" ubuntu@ec2-44-199-245-144
