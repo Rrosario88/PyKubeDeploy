@@ -15,7 +15,8 @@ resource "aws_instance" "pkd_ec2" {
   provisioner "local-exec" {
     command = "${path.module}/update_inventory.sh"
 
-  tags = {
+}
+ tags = {
     name = "PyKubeDeploy"
   }            
 }
