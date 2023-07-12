@@ -9,8 +9,26 @@ resource "aws_instance" "pkd_ec2" {
               sudo yum update -y
               sudo yum install -y docker
               sudo service docker start
-              sudo usermod -a -G docker ec2-user
+              sudo usermod -a -G docker ubuntu
               EOF
+
+resource "aws_security_group_rule" "allow_inbound" {
+  security_group_id = "sg-08b6fecc9fde31932"  # Replace with your security group ID
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "allow_inbound_5000" {
+  security_group_id = "sg-08b6fecc9fde31932"  # Replace with your security group ID
+  type              = "ingress"
+  from_port         = 5000
+  to_port           = 5000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
 
   provisioner "local-exec" {
     command = "${path.module}/update_inventory.sh"
@@ -19,8 +37,4 @@ resource "aws_instance" "pkd_ec2" {
  tags = {
     name = "PyKubeDeploy"
   }            
-}
-
-output "instance_ip" {
-  value = aws_instance.pkd_ec2.public_ip
 }
