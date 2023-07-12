@@ -12,6 +12,16 @@ resource "aws_instance" "pkd_ec2" {
               sudo usermod -a -G docker ubuntu
               EOF
 
+
+  provisioner "local-exec" {
+    command = "${path.module}/update_inventory.sh"
+
+}
+ tags = {
+    name = "PyKubeDeploy"
+  }            
+}
+
 resource "aws_security_group_rule" "allow_inbound" {
   security_group_id = "sg-08b6fecc9fde31932"  # Replace with your security group ID
   type              = "ingress"
@@ -28,13 +38,4 @@ resource "aws_security_group_rule" "allow_inbound_5000" {
   to_port           = 5000
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-}
-
-  provisioner "local-exec" {
-    command = "${path.module}/update_inventory.sh"
-
-}
- tags = {
-    name = "PyKubeDeploy"
-  }            
 }
