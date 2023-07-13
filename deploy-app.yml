@@ -10,7 +10,7 @@
 
     - name: Ensure application directory exists
       file:
-        path: "{{ app_directory }}"
+        path: /app
         state: directory
 
     - name: Copy Dockerfile to the EC2 instance
