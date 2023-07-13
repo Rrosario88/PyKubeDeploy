@@ -26,10 +26,14 @@
     - name: Copy app.py to the EC2 instance
       copy:
         src: app.py
-        dest: app/app.py
+        dest: /app/app.py
 
     - name: Build the Docker image
       command: docker build -t pykubedeploy /app
+
+    - name: Install dependencies inside the Docker container
+      command: docker run -v /app pykubedeploy pip3 install --no-cache-dir -r /app/requirements.txt
+
 
     - name: Run the Docker container
       command: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
