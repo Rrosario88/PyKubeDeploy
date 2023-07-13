@@ -7,22 +7,25 @@
     docker_image_name: pykubedeploy
 
   tasks:
-    - name: Ensure app directory exists
-      file:
-        path: /app
-        state: directory
-        mode: '0755'    
 
-    - name: Copy project to the EC2 instance
-      synchronize:
-        src: ./
-        dest: /app
-        delete: yes
-        recursive: yes
+    - name: Ensure application directory exists
+      file:
+        path: "{{ app_directory }}"
+        state: directory
+
+    - name: Copy Dockerfile to the EC2 instance
+      copy:
+        src: Dockerfile
+        dest: /app/Dockerfile
+
+    - name: Copy requirements.txt to the EC2 instance
+      copy:
+       src: requirements.txt
+       dest: /app/requirements.txt
 
     - name: Build the Docker image
-      shell: docker build -t pykubedeploy /app
+      command: docker build -t pykubedeploy /app
 
     - name: Run the Docker container
-      shell: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
+      command: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
 
