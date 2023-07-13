@@ -23,6 +23,11 @@
        src: requirements.txt
        dest: /app/requirements.txt
 
+    - name: Copy app.py to the EC2 instance
+      copy:
+        src: app.py
+        dest: app/app.py
+
     - name: Build the Docker image
       command: docker build -t pykubedeploy /app
 
