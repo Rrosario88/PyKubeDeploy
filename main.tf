@@ -21,7 +21,7 @@ resource "aws_instance" "pkd_ec2" {
 
 
   provisioner "local-exec" {
-    command = "update_inventory.sh"
+    command = "./update_inventory.sh"
 
   }
   tags = {
