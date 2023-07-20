@@ -1,4 +1,4 @@
 #!/bin/bash
 
 terraform apply -auto-approve
-~/update_inventory.sh
+./update_inventory.sh

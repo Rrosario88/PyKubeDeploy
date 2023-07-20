@@ -12,6 +12,9 @@ COPY requirements.txt .
 
 # Install any necessary dependencies
 
+RUN pip3 install --no-cache-dir -r requirements.txt --verbose --no-use-pep517
+
+
 
 # Make port 5000 & port 80 available to the outside world
 EXPOSE 5000
