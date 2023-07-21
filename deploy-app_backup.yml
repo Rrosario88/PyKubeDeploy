@@ -27,19 +27,26 @@
         src: app.py
         dest: /app/app.py
 
-    - name: Copy docker-compose.yml to the EC2 instance
+    - name: Build the Docker image
+      command: docker build -t pykubedeploy /app
+
+    - name: Run the Docker container
+      command: docker run -d -p 5000:5000 --name pykubedeploy pykubedeploy
+
+    - name: Install Docker Compose
+      shell: |
+        curl -L "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+      args:
+        creates: /usr/local/bin/docker-compose
+
+    - name: Copy docker-compose.yml file
       copy:
         src: docker-compose.yml
         dest: /app/docker-compose.yml
 
-    - name: Install Docker Compose
-      become: yes
-      get_url:
-        url: "https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64"
-        dest: /usr/local/bin/docker-compose
-        mode: '0755'
-
-    - name: Build and run the Docker Compose configuration
-      shell: docker-compose up -d --build
+    - name: Run Docker Compose
+      shell: docker-compose up -d
       args:
         chdir: /app
+
