@@ -3,9 +3,9 @@ from redis import Redis
 import os
 
 app = Flask(__name__)
-print(f"Connecting to Redis host: {os.getenv('REDIS_HOST', 'localhost')}")
-cache = Redis(host=os.getenv('REDIS_HOST', 'localhost'), port=6379, db=0)
-
+redis_host = os.getenv('REDIS_HOST', 'redis')
+print(f"Connecting to Redis host: {redis_host}")
+cache = Redis(host=redis_host, port=6379, db=0)
 
 @app.route('/')
 def hello():
