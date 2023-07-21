@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update the permissions of the private key file
-chmod 400 CastleKeys.pem
+chmod 400 /Users/robertrosario/.ssh/CastleKeys.pem
 
 # Run Terraform to apply the infrastructure changes
 terraform apply -auto-approve
@@ -10,7 +10,10 @@ terraform apply -auto-approve
 ./update_inventory.sh
 
 # Wait for 150 seconds (adjust the delay as needed)
-sleep 150
+sleep 90
+
+# Disable strict host key checking
+export ANSIBLE_HOST_KEY_CHECKING=False
 
 # Run the Ansible playbook to deploy the application
-ansible-playbook -i inventory.ini deploy-app.yml --private-key=~/.ssh/CastleKeys.pem -vvv
+ansible-playbook -i inventory.ini deploy-app.yml --private-key=/Users/robertrosario/.ssh/CastleKeys.pem
