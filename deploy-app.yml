@@ -7,11 +7,7 @@
     docker_image_name: pykubedeploy
 
   tasks:
-    - name: Install pip
-      raw: python -m ensurepip --upgrade
-      become: true
-      become_user: root
-
+   
     - name: Ensure application directory exists
       file:
         path: /app
@@ -34,9 +30,6 @@
 
     - name: Build the Docker image
       command: docker build -t pykubedeploy /app
-
-    - name: Install dependencies inside the Docker container
-      command: docker run -v /app pykubedeploy pip3 install --no-cache-dir -r /app/requirements.txt
 
 
     - name: Run the Docker container

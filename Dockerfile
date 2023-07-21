@@ -7,6 +7,10 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
+# Create a virtual environment and use it
+#RUN python3 -m venv /app/venv
+#ENV PATH="/app/venv/bin:$PATH"
+
 # Explicitly copy the requirements.txt file
 COPY requirements.txt .
 
