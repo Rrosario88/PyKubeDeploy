@@ -1,2 +1,2 @@
 .terraform/
-ssh -i "PyKubeDeployKey.pem" ubuntu@ec2-44-199-245-144
+ssh -i "PyKubeDeployKey.pem" ec2-user@ec2-44-199-245-144

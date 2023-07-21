@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update the permissions of the private key file
-chmod 400 PyKubeKeys.pem
+chmod 400 CastleKeys.pem
 
 # Run Terraform to apply the infrastructure changes
 terraform apply -auto-approve
