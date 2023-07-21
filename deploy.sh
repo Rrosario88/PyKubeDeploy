@@ -13,4 +13,4 @@ terraform apply -auto-approve
 sleep 150
 
 # Run the Ansible playbook to deploy the application
-ansible-playbook -i inventory.ini deploy-app.yml
+ansible-playbook -i inventory.ini deploy-app.yml -vvv
