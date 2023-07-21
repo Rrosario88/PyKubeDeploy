@@ -7,6 +7,10 @@
     docker_image_name: pykubedeploy
 
   tasks:
+    - name: Install pip
+      raw: python -m ensurepip --upgrade
+      become: true
+      become_user: root
 
     - name: Ensure application directory exists
       file:
