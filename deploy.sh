@@ -9,8 +9,8 @@ terraform apply -auto-approve
 # Update the inventory
 ./update_inventory.sh
 
-# Wait for 150 seconds (adjust the delay as needed)
-sleep 90
+# Wait for 60 seconds (adjust the delay as needed)
+sleep 60
 
 # Disable strict host key checking
 export ANSIBLE_HOST_KEY_CHECKING=False
