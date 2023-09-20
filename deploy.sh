@@ -16,4 +16,4 @@ sleep 60
 export ANSIBLE_HOST_KEY_CHECKING=False
 
 # Run the Ansible playbook to deploy the application
-ansible-playbook -i inventory.ini deploy-app.yml --private-key=/Users/robertrosario/.ssh/CastleKeys.pem
+ansible-playbook -i inventory.ini deploy-app.yml --private-key=/Users/robertrosario/.ssh/CastleKeys.pem -vvvv
