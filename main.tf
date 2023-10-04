@@ -10,12 +10,6 @@ resource "aws_instance" "pkd_ec2" {
               sudo yum install -y docker
               sudo service docker start
               sudo usermod -a -G docker ubuntu
-              # Copy the update_inventory.sh script to the EC2 instance
-              curl -o /tmp/update_inventory.sh https://example.com/update_inventory.sh
-              # Make the script executable
-              sudo chmod +x /tmp/update_inventory.sh
-              # Run the script
-              /tmp/update_inventory.sh
               EOF
             
 
