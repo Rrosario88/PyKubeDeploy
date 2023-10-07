@@ -5,10 +5,15 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "tform-states" 
 
-  versioning {
-    enabled = true
+}
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.terraform_state.bucket
+
+  versioning_configuration {
+    status = "Enabled"
   }
 }
+
 
 resource "aws_dynamodb_table" "terraform_locks" {
   name           = "terraform-up-and-running-locks"
