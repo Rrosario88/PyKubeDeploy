@@ -7,7 +7,7 @@ chmod 400 /Users/robertrosario/.ssh/CastleKeys.pem
 terraform apply -auto-approve
 
 # Update the inventory
-./update_inventory.sh
+main-terraform/update_inventory.sh
 
 # Wait for 60 seconds (adjust the delay as needed)
 sleep 60
