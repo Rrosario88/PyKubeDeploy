@@ -14,22 +14,22 @@
 
     - name: Copy Dockerfile to the EC2 instance
       copy:
-        src: Dockerfile
+        src: /app/Dockerfile
         dest: /app/Dockerfile
 
     - name: Copy requirements.txt to the EC2 instance
       copy:
-        src: requirements.txt
+        src: /app/requirements.txt
         dest: /app/requirements.txt
 
     - name: Copy app.py to the EC2 instance
       copy:
-        src: app.py
+        src: /app/app.py
         dest: /app/app.py
 
     - name: Copy docker-compose.yml to the EC2 instance
       copy:
-        src: docker-compose.yml
+        src: /app/docker-compose.yml
         dest: /app/docker-compose.yml
 
     - name: Install Docker Compose
