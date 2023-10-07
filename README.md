@@ -32,5 +32,3 @@ Step 7: Set Up Kubernetes
 Provision a Kubernetes cluster on AWS using Terraform. Update the Jenkins pipeline to deploy your application to this Kubernetes cluster instead of the standalone EC2 instance.
 
 Throughout these steps, make sure to commit your code, Dockerfile, Jenkinsfile, Terraform scripts, and Ansible playbooks to a Git repository, so you have version control for your project.
-
-Please note that while this guide provides a high-level overview, each step involves several sub-steps and requires a deep understanding of the individual tools and services.
