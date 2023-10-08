@@ -46,3 +46,4 @@ resource "aws_security_group_rule" "allow_inbound_5000" {
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
 }
+

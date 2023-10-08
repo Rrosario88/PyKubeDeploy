@@ -15,3 +15,14 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 
 }
+/*
+terraform {
+  backend "s3" {
+    bucket         = "tform-states" 
+    key            = "path/to/my/key"
+    region         = "us-east-1" 
+    dynamodb_table = "terraform-up-and-running-locks"
+    encrypt        = true
+  }
+}
+*/
