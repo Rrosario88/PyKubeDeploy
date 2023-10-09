@@ -19,7 +19,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "tform-states" 
-    key            = "path/to/my/key"
+    key            = "~/.ssh/CastleKeys.pub"
     region         = "us-east-1" 
     dynamodb_table = "terraform-up-and-running-locks"
     encrypt        = true
