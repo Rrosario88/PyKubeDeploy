@@ -15,7 +15,7 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 
 }
-/*
+
 terraform {
   backend "s3" {
     bucket         = "tform-states" 
@@ -25,4 +25,3 @@ terraform {
     encrypt        = true
   }
 }
-*/
