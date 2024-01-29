@@ -1,3 +1,4 @@
 .terraform/
 .DS_Store
 ssh -i "PyKubeDeployKey.pem" ec2-user@ec2-44-199-245-144
+/jenkins
