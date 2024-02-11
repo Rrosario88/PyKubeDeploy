@@ -119,9 +119,10 @@ resource "aws_security_group_rule" "allow_inbound_8080" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 resource "aws_security_group" "allow_outgoing_internet" {
+  security_group_id = aws_security_group.pkd_security_group.id
   name        = "allow_outgoing_internet"
   description = "Allow outgoing internet access"
-  vpc_id      = aws_vpc.pkd_vpc.id  # Replace with your VPC ID
+
 
   # Outbound rule - Allow all outbound traffic
   egress {
