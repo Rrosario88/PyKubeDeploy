@@ -1,7 +1,4 @@
-provider "aws" {
-  access_key = "AWS_ACCESS_KEY_ID"
-  secret_key = "AWS_SECRET_ACCESS_KEY"
-}
+
 
 resource "aws_instance" "jenkins" {
   ami           = "ami-05548f9cecf47b442" # Replace with the latest Amazon Linux AMI in your region
