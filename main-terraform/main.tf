@@ -118,24 +118,19 @@ resource "aws_security_group_rule" "allow_inbound_8080" {
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
 }
-resource "aws_security_group" "allow_outgoing_internet" {
+resource "aws_security_group_rule" "allow_outgoing_internet" {
   security_group_id = aws_security_group.pkd_security_group.id
-  name        = "allow_outgoing_internet"
-  description = "Allow outgoing internet access"
-
-
-  # Outbound rule - Allow all outbound traffic
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"  # -1 means all protocols
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"  # -1 means all protocols
+  cidr_blocks       = ["0.0.0.0/0"]
 
   tags = {
     Name = "AllowOutgoingInternet"
   }
 }
+
 
 
 
