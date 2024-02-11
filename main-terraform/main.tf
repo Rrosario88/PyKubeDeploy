@@ -126,12 +126,7 @@ resource "aws_security_group_rule" "allow_outgoing_internet" {
   protocol          = "-1"  # -1 means all protocols
   cidr_blocks       = ["0.0.0.0/0"]
 
-  tags = {
-    Name = "AllowOutgoingInternet"
-  }
 }
-
-
 
 
 
