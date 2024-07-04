@@ -26,8 +26,8 @@ data "aws_secretsmanager_secret_version" "my_credentials_version" {
 
 # Configure the AWS provider with the retrieved credentials
 provider "aws" {
-  access_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["aws_access_key_id"]
-  secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["aws_secret_access_key"]
+  access_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)[0].AccessKeyId
+  secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)[0].SecretAccessKey
   region     = "us-east-1"
 }
 
