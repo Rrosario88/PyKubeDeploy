@@ -1,3 +1,4 @@
+
 terraform {
   required_providers {
     aws = {
@@ -26,10 +27,11 @@ data "aws_secretsmanager_secret_version" "my_credentials_version" {
 
 # Configure the AWS provider with the retrieved credentials
 provider "aws" {
-  access_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)[0].AccessKeyId
-  secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)[0].SecretAccessKey
+  access_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["AccessKeyId"]
+  secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["SecretAccessKey"]
   region     = "us-east-1"
 }
+
 
 terraform {
   backend "s3" {
