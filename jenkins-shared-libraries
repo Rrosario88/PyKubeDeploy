@@ -1,0 +1,7 @@
+// Jenkins shared library for deploying to ECS
+@Library('jenkins-shared-libraries') _
+
+def deployToECS(dockerImage) {
+    // Deploy the Docker image to ECS
+    // and return the deployed application URL
+}

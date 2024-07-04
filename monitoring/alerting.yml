@@ -1,0 +1,21 @@
+# Prometheus alerting rules
+groups:
+  - name: webapp
+    rules:
+      - alert: HighCPUUsage
+        expr: sum(rate(process_cpu_seconds_total{job="python-webapp"}[5m])) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage for Python web application"
+          description: "The Python web application is consuming high CPU resources."
+
+      - alert: HighMemoryUsage
+        expr: sum(process_resident_memory_bytes{job="python-webapp"}) > 1073741824 # 1GB
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage for Python web application"
+          description: "The Python web application is consuming high memory."
