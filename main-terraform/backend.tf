@@ -16,15 +16,20 @@ provider "aws" {
 }
 
 # Retrieve the AWS credentials from Secrets Manager
-data "aws_secretsmanager_secret_value" "my_credentials" {
+data "aws_secretsmanager_secret" "my_credentials" {
+  provider = aws.static
+  name     = "AWSCastleKeys"
+}
+
+data "aws_secretsmanager_secret_version" "my_credentials_version" {
   provider  = aws.static
-  secret_id = "AWSCastleKeys"
+  secret_id = data.aws_secretsmanager_secret.my_credentials.id
 }
 
 # Configure the AWS provider with the retrieved credentials
 provider "aws" {
-  access_key = data.aws_secretsmanager_secret_value.my_credentials.secret_string
-  secret_key = data.aws_secretsmanager_secret_value.my_credentials.secret_string
+  access_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["aws_access_key_id"]
+  secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["aws_secret_access_key"]
   region     = "us-east-1"
 }
 
