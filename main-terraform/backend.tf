@@ -7,12 +7,10 @@ terraform {
   }
 }
 
-# Configure the AWS provider with temporary static credentials
+# Configure the AWS provider with credentials from environment variables
 provider "aws" {
-  alias      = "static"
-  access_key = "TEMPORARY_ACCESS_KEY"
-  secret_key = "TEMPORARY_SECRET_KEY"
-  region     = "us-east-1"
+  alias  = "static"
+  region = "us-east-1"
 }
 
 # Retrieve the AWS credentials from Secrets Manager
@@ -32,7 +30,6 @@ provider "aws" {
   secret_key = jsondecode(data.aws_secretsmanager_secret_version.my_credentials_version.secret_string)["aws_secret_access_key"]
   region     = "us-east-1"
 }
-
 
 terraform {
   backend "s3" {
