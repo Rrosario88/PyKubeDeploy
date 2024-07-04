@@ -1,5 +1,5 @@
 
-
+/*
 resource "aws_instance" "jenkins" 
   ami           = "ami-05548f9cecf47b442" # Replace with the latest Amazon Linux AMI in your region
   instance_type = "t2.micro" # Adjust as per your requirements
@@ -39,3 +39,4 @@ resource "aws_instance" "jenkins"
               unzip terraform_1.0.0_linux_amd64.zip
               mv terraform /usr/local/bin/
               EOF
+*/
