@@ -2,8 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.19" # Update to a version >= 3.19.0
-
+      version = "~> 3.19"
     }
   }
 }
@@ -24,8 +23,8 @@ data "aws_secretsmanager_secret_value" "my_credentials" {
 
 # Configure the AWS provider with the retrieved credentials
 provider "aws" {
-  access_key = jsondecode(data.aws_secretsmanager_secret_value.my_credentials.secret_string)["aws_access_key_id"]
-  secret_key = jsondecode(data.aws_secretsmanager_secret_value.my_credentials.secret_string)["aws_secret_access_key"]
+  access_key = data.aws_secretsmanager_secret_value.my_credentials.secret_string
+  secret_key = data.aws_secretsmanager_secret_value.my_credentials.secret_string
   region     = "us-east-1"
 }
 
