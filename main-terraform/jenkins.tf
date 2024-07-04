@@ -39,7 +39,3 @@ resource "aws_instance" "jenkins" {
               unzip terraform_1.0.0_linux_amd64.zip
               mv terraform /usr/local/bin/
               EOF
-
-}
-
-
