@@ -1,5 +1,5 @@
 
-/*
+
 resource "aws_instance" "jenkins" {
   ami           = "ami-05548f9cecf47b442" # Replace with the latest Amazon Linux AMI in your region
   instance_type = "t2.micro" # Adjust as per your requirements
@@ -42,4 +42,4 @@ resource "aws_instance" "jenkins" {
 
 }
 
-*/
+
