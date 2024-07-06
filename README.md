@@ -1,7 +1,7 @@
 # PyKubeDeploy
 Project that involves a web application developed with Python, hosted on a Linux Apache server, and incorporates Redis for caching. The infrastructure and deployment will involve Docker, Kubernetes, Terraform, and Jenkins for CI/CD. Monitoring will be handled by Zabbix and ELK, and everything will be hosted on AWS
 
-Great! Here's a step-by-step plan to create your project, PyFlaskKubeDeploy. The goal is to create a simple Python Flask application that uses Redis for caching, containerize it with Docker, deploy it to a Kubernetes cluster running on AWS, automate deployments with Jenkins and Ansible, and monitor it with Zabbix and the ELK stack.
+The goal is to create a simple Python Flask application that uses Redis for caching, containerize it with Docker, deploy it to a Kubernetes cluster running on AWS, automate deployments with Jenkins and Ansible, and monitor it with Zabbix and the ELK stack.
 
 Step 1: Develop your Python Flask application
 
