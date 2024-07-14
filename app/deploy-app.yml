@@ -39,7 +39,21 @@
         dest: /usr/local/bin/docker-compose
         mode: '0755'
 
+    - name: Upgrade Docker to the latest version
+      yum:
+        name: docker
+        state: latest
+      notify:
+        - Restart Docker service
+
     - name: Build and run the Docker Compose configuration
       shell: docker-compose up -d --build
       args:
         chdir: /app
+
+  handlers:
+    - name: Restart Docker service
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: docker
