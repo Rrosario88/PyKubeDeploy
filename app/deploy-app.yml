@@ -6,12 +6,13 @@
     docker_image_name: pykubedeploy
 
   tasks:
-   
+    # This task ensures that the application directory exists on the target host
     - name: Ensure application directory exists
       file:
         path: /app
         state: directory
 
+    # The following tasks copy necessary files from the local machine to the EC2 instance
     - name: Copy Dockerfile to the EC2 instance
       copy:
         src: ../app/Dockerfile
@@ -32,6 +33,7 @@
         src: ../app/docker-compose.yml
         dest: /app/docker-compose.yml
 
+    # This task installs Docker Compose on the EC2 instance
     - name: Install Docker Compose
       become: yes
       get_url:
@@ -39,7 +41,25 @@
         dest: /usr/local/bin/docker-compose
         mode: '0755'
 
+    # This task upgrades Docker to the latest version and notifies the handler to restart Docker
+    - name: Upgrade Docker to the latest version
+      yum:
+        name: docker
+        state: latest
+      notify:
+        - Restart Docker service
+
+    # This task builds and runs the Docker Compose configuration
     - name: Build and run the Docker Compose configuration
       shell: docker-compose up -d --build
       args:
         chdir: /app
+
+  # Handlers are tasks that only run when notified by other tasks
+  handlers:
+    # This handler restarts the Docker service when notified
+    - name: Restart Docker service
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: docker
