@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/myorg/python-webapp.git'
+                git branch: 'main', url: 'https://github.com/Rrosario88/PyKubeDeploy.git'
             }
         }
         
